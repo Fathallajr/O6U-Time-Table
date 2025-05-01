@@ -1,18 +1,21 @@
-// src/app/app.component.ts
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';  // عدّل المسار لو مختلف
+import { Component }      from '@angular/core';
+import { RouterOutlet }   from '@angular/router';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+
+// لو عايز تستخدم حاجة تانيّة زي CommonModule أو FormsModule ضيفها هنا في الـ imports
 
 @Component({
   selector: 'app-root',
-  standalone: true,               // خلي الـ AppComponent standalone
-  imports: [
-    RouterOutlet,
-    LoginComponent                // ضيف هنا اللوجين
-  ],
-  templateUrl: './app.component.html',
+  standalone: true,
+  imports: [ NavbarComponent, RouterOutlet, ],
+  template: `
+    <app-navbar></app-navbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'o6u-Time-Table';
+  // هنا ممكن تحط logic عام لو حبيت
 }

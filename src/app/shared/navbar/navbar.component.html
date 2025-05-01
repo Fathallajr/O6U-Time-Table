@@ -1,0 +1,21 @@
+<nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="logo.png" alt="O6U Logo" />        
+      </div>
+  
+      <ul class="nav-list">
+        <li><a routerLink="/login"  routerLinkActive="active">Log in</a></li>
+        <li><a routerLink="/signup" routerLinkActive="active">Sign up</a></li>
+      </ul>
+  
+      <div class="profile">
+        <img
+          [src]="(user$ | async)?.photoUrl || 'logo.png'"
+          alt="User avatar"
+        />
+        <span>{{ (user$ | async)?.name || 'Your Name' }}</span>
+      </div>
+    </div>
+  </nav>
+  

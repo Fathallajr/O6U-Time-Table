@@ -1,9 +1,8 @@
 // src/app/auth/login/login.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit }             from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-// لو عندك AuthService ابعته هنا
-// import { AuthService } from '../../services/auth.service';
+import { Router }                        from '@angular/router';
+import { AuthService, User }             from '../../services/auth.service'; // استيراد الــ AuthService
 
 @Component({
   selector: 'app-login',
@@ -15,13 +14,13 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    // private auth: AuthService,
+    private auth: AuthService,  // حقن الــ AuthService
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email:    ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
@@ -33,14 +32,20 @@ export class LoginComponent implements OnInit {
     }
     const { email, password } = this.loginForm.value;
     console.log('credentials:', email, password);
-    // هنا تبعت للدالة اللي هتتعامل مع الـ API
-    // this.auth.login(email, password).subscribe(
-    //   () => this.router.navigate(['/dashboard']),
-    //   err => console.error(err)
-    // );
+
+    // هنا مكان مناداة الـ API للـ login، وبعد الاستجابة الناجحة:
+    // مثال تجريبي على setUser مع بيانات ثابتة
+    const demoUser: User = {
+      name: 'Mahmoud Fathallah',
+      photoUrl: 'https://i.pravatar.cc/150?img=3'
+    };
+    this.auth.setUser(demoUser);
+
+    // بعد كده نعمل توجيه للشاشة الرئيسية (مثلاً dashboard)
+    this.router.navigate(['/dashboard']);
   }
 
-  // getters for template
-  get email() { return this.loginForm.get('email'); }
+  // getters للتمبليت
+  get email()    { return this.loginForm.get('email'); }
   get password() { return this.loginForm.get('password'); }
 }
