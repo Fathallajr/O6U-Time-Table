@@ -1,33 +1,69 @@
-
 <div class="signup-page">
-    <div class="signup-form">
-      <h2>Sign up</h2>
-  
+  <div class="signup-form">
+    <h2>Sign up</h2>
+
+    <!-- Add form tag with ngSubmit -->
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
       <label>
         <span>Full Name</span>
         <input formControlName="fullName" type="text" placeholder="Enter your full name" />
+        <!-- Basic validation -->
+        <div *ngIf="fullName?.invalid && (fullName?.dirty || fullName?.touched)" class="error-message">
+          <small *ngIf="fullName?.errors?.['required']">Full Name is required.</small>
+        </div>
       </label>
+
       <label>
         <span>Email</span>
         <input formControlName="email" type="email" placeholder="Enter your Email" />
+         <!-- Basic validation -->
+         <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">
+           <small *ngIf="email?.errors?.['required']">Email is required.</small>
+           <small *ngIf="email?.errors?.['email']">Please enter a valid email.</small>
+         </div>
       </label>
+
       <label>
         <span>Password</span>
         <input formControlName="password" type="password" placeholder="Enter your Password" />
+         <!-- Basic validation -->
+         <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+           <small *ngIf="password?.errors?.['required']">Password is required.</small>
+           <small *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+         </div>
       </label>
+
       <label>
         <span>Confirm Password</span>
         <input formControlName="confirmPassword" type="password" placeholder="Confirm your password" />
-        <div *ngIf="signUpForm.errors?.['mismatch'] && confirm?.touched" class="error">
-          Passwords do not match
-        </div>
+         <!-- Validation for confirm password itself -->
+         <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)" class="error-message">
+            <small *ngIf="confirmPassword?.errors?.['required']">Please confirm your password.</small>
+         </div>
+         <!-- Validation for password mismatch (using form-level validator) -->
+         <div *ngIf="signUpForm.errors?.['mismatch'] && (confirmPassword?.dirty || confirmPassword?.touched)" class="error-message">
+           <small>Passwords do not match.</small>
+         </div>
       </label>
-  
-      <button class="btn-primary" (click)="onSubmit()">Sign up</button>
-    </div>
-  
-    <div class="signup-side-image">
-      <img src="o6u.png" alt="o6u" />
-    </div>
+
+      <!-- Display general API error message -->
+      <div *ngIf="errorMessage" class="error-message api-error">
+        <small>{{ errorMessage }}</small>
+      </div>
+
+      <!-- Update button text and disable state -->
+      <button type="submit" class="btn-primary" [disabled]="signUpForm.invalid || isLoading">
+        {{ isLoading ? 'Signing up...' : 'Sign up' }}
+      </button>
+
+    </form> <!-- Close form tag -->
+
+
   </div>
-  
+
+  <div class="signup-side-image">
+
+    <img src="o6u.png" alt="O6U Building" />
+  </div>
+</div>

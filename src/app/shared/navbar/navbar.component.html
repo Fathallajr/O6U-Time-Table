@@ -1,21 +1,37 @@
 <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo">
-        <img src="logo.png" alt="O6U Logo" />        
-      </div>
-  
+  <div class="nav-container">
+    <div class="logo">
+
+      <img src="logo.png" alt="O6U Logo" />
+    </div>
+
+    <!-- Use *ngIf with the isAuthenticated$ observable from AuthService -->
+    <ng-container *ngIf="(authService.isAuthenticated$ | async); else loggedOutLinks">
+      <!-- Links visible when logged IN -->
       <ul class="nav-list">
-        <li><a routerLink="/login"  routerLinkActive="active">Log in</a></li>
-        <li><a routerLink="/signup" routerLinkActive="active">Sign up</a></li>
+         <li><a routerLink="/level" routerLinkActive="active">Select Level</a></li>
+         <!-- Add other authenticated links like Dashboard, Timetable etc. -->
+         
+         <li><a (click)="logout()" style="cursor: pointer;">Logout</a></li> <!-- Logout Button -->
       </ul>
-  
       <div class="profile">
         <img
-          [src]="(user$ | async)?.photoUrl || 'logo.png'"
+          src="profile.png"
           alt="User avatar"
         />
-        <span>{{ (user$ | async)?.name || 'Your Name' }}</span>
+        <!-- Use the 'name' property from the User interface -->
+        <span>{{ (authService.currentUser$ | async)?.name || 'User' }}</span>
       </div>
-    </div>
-  </nav>
-  
+    </ng-container>
+
+    <!-- Template shown when logged OUT -->
+    <ng-template #loggedOutLinks>
+       <ul class="nav-list">
+         <li><a routerLink="/login" routerLinkActive="active">Log in</a></li>
+         <li><a routerLink="/signup" routerLinkActive="active">Sign up</a></li>
+       </ul>
+
+    </ng-template>
+
+  </div>
+</nav>
