@@ -27,7 +27,7 @@
   .signup-page .signup-form label span {
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #e4b030; /* darken(#FD9C35, 10%) */
+    color: #FD9C35; /* darken(#FD9C35, 10%) */
   }
   
   .signup-page .signup-form label input {
