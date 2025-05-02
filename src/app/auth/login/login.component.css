@@ -12,22 +12,25 @@
   flex-direction: column;
   gap: 1.5rem;
   background: #ffffff; /* white */
+  
 }
 
 .login-page .login-form h2 {
   margin-bottom: 2rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .login-page .login-form label {
   display: flex;
   flex-direction: column;
+  
 }
 
 .login-page .login-form label span {
   margin-bottom: 0.5rem;
   font-weight: 500;
   color: #e4b030; /* darken(#FD9C35, 10%) */
+  font-size: 1.2rem;
 }
 
 .login-page .login-form label input {
@@ -35,12 +38,19 @@
   border: none;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
+  font-size: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.login-page .login-form label input {
+  font-size: 1rem; /* كان 1.1rem قبل كده */
+  padding: 0.7rem 1rem; /* رجّعنا البادينج شوية لو عايز كمان */
 }
 
 .login-page .login-form label input:focus {
   outline: 2px solid #FD9C35;
 }
+
 
 .login-page .login-form .btn-primary {
   margin-top: 1.5rem;

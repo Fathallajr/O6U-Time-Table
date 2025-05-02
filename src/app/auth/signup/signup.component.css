@@ -36,6 +36,7 @@
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.9);
     font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
   .signup-page .signup-form label input:focus {
@@ -52,6 +53,7 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.2s;
+    
   }
   
   .signup-page .signup-form .btn-primary:hover {

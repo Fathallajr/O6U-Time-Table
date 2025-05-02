@@ -13,7 +13,7 @@
           <small *ngIf="fullName?.errors?.['required']">Full Name is required.</small>
         </div>
       </label>
-
+      <br>
       <label>
         <span>Email</span>
         <input formControlName="email" type="email" placeholder="Enter your Email" />
@@ -23,7 +23,7 @@
            <small *ngIf="email?.errors?.['email']">Please enter a valid email.</small>
          </div>
       </label>
-
+      <br>
       <label>
         <span>Password</span>
         <input formControlName="password" type="password" placeholder="Enter your Password" />
@@ -33,7 +33,7 @@
            <small *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters long.</small>
          </div>
       </label>
-
+      <br>
       <label>
         <span>Confirm Password</span>
         <input formControlName="confirmPassword" type="password" placeholder="Confirm your password" />
