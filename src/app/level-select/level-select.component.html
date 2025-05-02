@@ -1,22 +1,35 @@
 <div class="level-page">
-    <div class="level-options">
-      <h2>Select your level</h2>
-      <div class="buttons">
-        <button
-          *ngFor="let lvl of levels"
-          class="btn-level"
-          (click)="select(lvl)"
-        >
-          {{ lvl }}
-        </button>
-      </div>
-      <button class="btn-back" (click)="back()">
-        ←
+  <div class="level-options">
+    <h2>Select your level</h2>
+
+    <!-- Error Message Display -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="loading-indicator">
+      Loading schedule...
+    </div>
+
+    <div class="buttons" *ngIf="!isLoading"> <!-- Hide buttons while loading -->
+      <button
+        *ngFor="let lvl of levels"
+        class="btn-level"
+        (click)="select(lvl)"
+        [disabled]="isLoading"
+      >
+        {{ lvl }}
       </button>
     </div>
   
     <div class="level-side-image">
-      <img src="o6u.png" alt="o6u"/>
+      <img src="o6u.png" alt="o6u" />
     </div>
   </div>
+
+  <div class="level-side-image">
   
+     <img src="o6u.png" alt="O6U Building" />
+  </div>
+</div>

@@ -1,9 +1,7 @@
-// src/app/shared/navbar/navbar.component.ts
-import { Component }                      from '@angular/core';
-import { RouterLink, RouterLinkActive }   from '@angular/router';
-import { NgIf, AsyncPipe }                from '@angular/common';
-import { AuthService, User }              from '../../services/auth.service';
-import { Observable } from 'rxjs';
+import { Component, inject } from '@angular/core'; 
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { AuthService } from '../../services/auth.service'; 
 
 @Component({
   selector: 'app-navbar',
@@ -13,11 +11,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  // خلي ال property بدون initializer
-  user$!: Observable<User|null>;
+  authService = inject(AuthService);
+  private router = inject(Router); 
 
-  constructor(private auth: AuthService) {
-    // واديها القيمة جوّه الكونستركتور
-    this.user$ = this.auth.currentUser$;
-    }
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']); // Redirect to login page after logout
   }
+}

@@ -1,19 +1,47 @@
-
 <div class="login-page">
-    <div class="login-form">
-      <h2>Log in</h2>
+  <div class="login-form">
+    <h2>Log in</h2>
+
+    <!-- Add form tag with ngSubmit -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
       <label>
         <span>Email</span>
-        <input type="email" placeholder="Enter your email" />
+        <!-- Add formControlName -->
+        <input formControlName="email" type="email" placeholder="Enter your email" />
+        <!-- Basic validation message example -->
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">
+          <small *ngIf="email?.errors?.['required']">Email is required.</small>
+          <small *ngIf="email?.errors?.['email']">Please enter a valid email address.</small>
+        </div>
       </label>
+
       <label>
         <span>Password</span>
-        <input type="password" placeholder="Enter your Password" />
+        <!-- Add formControlName -->
+        <input formControlName="password" type="password" placeholder="Enter your Password" />
+        <!-- Basic validation message example -->
+         <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+           <small *ngIf="password?.errors?.['required']">Password is required.</small>
+         </div>
       </label>
-      <button class="btn-primary">Log in</button>
-    </div>
-    <div class="login-side-image">
-      <img src="o6u.png" alt="o6u" />
-    </div>
+
+      <!-- Display general login error message -->
+      <div *ngIf="errorMessage" class="error-message api-error">
+        <small>{{ errorMessage }}</small>
+      </div>
+
+      <!-- Disable button while loading -->
+      <button type="submit" class="btn-primary" [disabled]="loginForm.invalid || isLoading">
+         {{ isLoading ? 'Logging in...' : 'Log in' }}
+      </button>
+
+    </form> <!-- Close form tag -->
+
+
   </div>
-  
+  <div class="login-side-image">
+   
+    <img src="o6u.png" alt="O6U Building" />
+  </div>
+</div>
