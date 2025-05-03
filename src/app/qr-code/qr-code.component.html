@@ -1,0 +1,40 @@
+<div class="qr-code-page">
+  <div class="qr-code-form">
+    <h2>Student QR Code Attendance</h2>
+    
+    <div class="input-section">
+      <label for="studentCode">
+        <span>Enter Student Code:</span>
+        <input 
+          type="number" 
+          id="studentCode" 
+          name="studentCode" 
+          [(ngModel)]="studentCode" 
+          placeholder="Enter student code" 
+          required
+        />
+      </label>
+      <button (click)="generateQrCode()" [disabled]="isLoading || !studentCode">
+        {{ isLoading ? 'Generating...' : 'Generate QR Code' }}
+      </button>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="qrCodeUrl" class="qr-code-result">
+      <h3>Your QR Code</h3>
+      <img [src]="qrCodeUrl" alt="Student QR Code" />
+      <p>This QR code contains your student information</p>
+    </div>
+
+    <div *ngIf="isLoading" class="loading">
+      Loading QR code...
+    </div>
+  </div>
+  
+  <div class="qr-code-side-image">
+    <img src="o6u.png" alt="O6U Building" />
+  </div>
+</div>

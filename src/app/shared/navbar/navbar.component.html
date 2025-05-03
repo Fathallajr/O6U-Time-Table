@@ -10,9 +10,10 @@
       <!-- Links visible when logged IN -->
       <ul class="nav-list">
          <li><a routerLink="/level" routerLinkActive="active">Select Level</a></li>
-         <!-- Add other authenticated links like Dashboard, Timetable etc. -->
+         <li><a routerLink="/Qr" routerLinkActive="active">Attendance</a></li>
+
          
-         <li><a (click)="logout()" style="cursor: pointer;">Logout</a></li> <!-- Logout Button -->
+         <li><a (click)="logout()" style="cursor: pointer;">Logout</a></li>
       </ul>
       <div class="profile">
         <img

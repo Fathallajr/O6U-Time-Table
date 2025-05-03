@@ -1,4 +1,3 @@
-// src/main.ts
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
@@ -8,6 +7,7 @@ import { LoginComponent } from './app/auth/login/login.component';
 import { SignUpComponent } from './app/auth/signup/signup.component';
 import { LevelSelectComponent } from './app/level-select/level-select.component';
 import { ScheduleDisplayComponent } from './app/schedule/schedule-display/schedule-display.component';
+import { QrCodeComponent } from './app/qr-code/qr-code.component';
 
 
 bootstrapApplication(AppComponent, {
@@ -18,7 +18,8 @@ bootstrapApplication(AppComponent, {
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignUpComponent },
       { path: 'level', component: LevelSelectComponent },
-      { path: 'schedule', component: ScheduleDisplayComponent }, 
+      { path: 'schedule', component: ScheduleDisplayComponent },
+      { path: 'Qr', component: QrCodeComponent },
       { path: '**', redirectTo: 'login' }
     ])
   ]

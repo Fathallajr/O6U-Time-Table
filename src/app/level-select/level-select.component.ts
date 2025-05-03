@@ -41,7 +41,7 @@ export class LevelSelectComponent {
     this.isLoading = true;
     this.errorMessage = null; // Reset error message
 
-    const apiUrl = `${this.apiBaseUrl}/api/Schedule/level/${levelNumber}`;
+    const apiUrl = `${this.apiBaseUrl}/api/Project/level/${levelNumber}`;
     console.log(`Fetching schedule from: ${apiUrl}`);
 
     this.http.get<ScheduleResponse>(apiUrl)
