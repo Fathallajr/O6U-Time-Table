@@ -21,7 +21,12 @@
           alt="User avatar"
         />
         <!-- Use the 'name' property from the User interface -->
-        <span>{{ (authService.currentUser$ | async)?.name || 'User' }}</span>
+        <span class="user-info">
+          <span class="user-name">{{ (authService.currentUser$ | async)?.name || 'User' }}</span>
+          <span class="user-id" *ngIf="(authService.currentUser$ | async)?.studentCode">
+            ({{ (authService.currentUser$ | async)?.studentCode }})
+          </span>
+        </span>
       </div>
     </ng-container>
 

@@ -8,6 +8,7 @@ export interface ApiUser {
   userName: string;
   email: string;
   fullName: string;
+  studentCode: number;
 }
 
 export interface User {
@@ -15,6 +16,7 @@ export interface User {
   email: string;
   name: string;
   photoUrl?: string;
+  studentCode: number;
 }
 
 export interface LoginResponse {
@@ -68,6 +70,7 @@ export class AuthService {
             id: response.user.id,
             email: response.user.email,
             name: response.user.fullName,
+            studentCode: response.user.studentCode,
             photoUrl: 'assets/img/default-avatar.png' 
           };
 

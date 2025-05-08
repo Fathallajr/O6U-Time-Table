@@ -15,6 +15,16 @@
       </label>
       <br>
       <label>
+        <span>Student Code</span>
+        <input formControlName="studentCode" type="text" placeholder="Enter your student code" />
+        <!-- Student code validation -->
+        <div *ngIf="studentCode?.invalid && (studentCode?.dirty || studentCode?.touched)" class="error-message">
+          <small *ngIf="studentCode?.errors?.['required']">Student code is required.</small>
+          <small *ngIf="studentCode?.errors?.['pattern']">Student code must contain only numbers.</small>
+        </div>
+      </label>
+      <br>
+      <label>
         <span>Email</span>
         <input formControlName="email" type="email" placeholder="Enter your Email" />
          <!-- Basic validation -->

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProjectService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://localhost:7046/api/Project';
+  private apiUrl = 'https://localhost:7046/api/Student';
 
   getQrCode(studentCode: number): Observable<Blob> {
     return this.http.get(`${this.apiUrl}/qrcode/${studentCode}`, {

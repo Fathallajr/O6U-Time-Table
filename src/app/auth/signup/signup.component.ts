@@ -35,7 +35,8 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
     this.signUpForm = this.fb.group({
       fullName: ['', Validators.required],
-      email:    ['', [Validators.required, Validators.email]],
+      studentCode: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     }, { validators: this.passwordsMatch });
@@ -68,8 +69,13 @@ export class SignUpComponent implements OnInit {
 
     this.isLoading = true;
 
-    const { fullName, email, password } = this.signUpForm.value;
-    const payload = { fullName, email, password };
+    const { fullName, studentCode, email, password } = this.signUpForm.value;
+    const payload = { 
+      fullName, 
+      studentCode: Number(studentCode), 
+      email, 
+      password 
+    };
     const registerUrl = `${this.apiBaseUrl}/register`;
 
     console.log('Attempting registration with payload:', payload);
@@ -91,7 +97,12 @@ export class SignUpComponent implements OnInit {
           } else if (err.error && err.error.message) {
              this.errorMessage = err.error.message; 
           } else if (err.status === 400) {
-             this.errorMessage = 'Registration failed. The email might already be in use or input is invalid.';
+             // Check for student code already exists error
+             if (err.error && err.error.includes && err.error.includes('Student code already exists')) {
+               this.errorMessage = 'Registration failed. This student code is already registered.';
+             } else {
+               this.errorMessage = 'Registration failed. The email might already be in use or input is invalid.';
+             }
           } else {
              this.errorMessage = `An unexpected error occurred (Status: ${err.status}). Please try again.`;
           }
@@ -105,7 +116,8 @@ export class SignUpComponent implements OnInit {
 
   // Getters for easy template access
   get fullName() { return this.signUpForm.get('fullName'); }
-  get email()    { return this.signUpForm.get('email'); }
+  get studentCode() { return this.signUpForm.get('studentCode'); }
+  get email() { return this.signUpForm.get('email'); }
   get password() { return this.signUpForm.get('password'); }
-  get confirmPassword()  { return this.signUpForm.get('confirmPassword'); }
+  get confirmPassword() { return this.signUpForm.get('confirmPassword'); }
 }
