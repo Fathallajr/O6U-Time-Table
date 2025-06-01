@@ -1,43 +1,44 @@
 <nav class="navbar">
   <div class="nav-container">
     <div class="logo">
-
       <img src="logo.png" alt="O6U Logo" />
     </div>
+
+    <button class="mobile-menu-btn" (click)="toggleMenu()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
     <!-- Use *ngIf with the isAuthenticated$ observable from AuthService -->
     <ng-container *ngIf="(authService.isAuthenticated$ | async); else loggedOutLinks">
       <!-- Links visible when logged IN -->
-      <ul class="nav-list">
-         <li><a routerLink="/level" routerLinkActive="active">Select Level</a></li>
-         <li><a routerLink="/Qr" routerLinkActive="active">Attendance</a></li>
-
-         
-         <li><a (click)="logout()" style="cursor: pointer;">Logout</a></li>
-      </ul>
-      <div class="profile">
-        <img
-          src="profile.png"
-          alt="User avatar"
-        />
-        <!-- Use the 'name' property from the User interface -->
-        <span class="user-info">
-          <span class="user-name">{{ (authService.currentUser$ | async)?.name || 'User' }}</span>
-          <span class="user-id" *ngIf="(authService.currentUser$ | async)?.studentCode">
-            ({{ (authService.currentUser$ | async)?.studentCode }})
+      <div class="nav-wrapper" [class.active]="isMenuOpen">
+        <ul class="nav-list">
+          <li><a routerLink="/level" routerLinkActive="active" (click)="closeMenu()">Select Level</a></li>
+          <li><a routerLink="/Qr" routerLinkActive="active" (click)="closeMenu()">Attendance</a></li>
+          <li><a (click)="logout()" style="cursor: pointer;">Logout</a></li>
+        </ul>
+        <div class="profile">
+          <img src="profile.png" alt="User avatar" />
+          <span class="user-info">
+            <span class="user-name">{{ (authService.currentUser$ | async)?.name || 'User' }}</span>
+            <span class="user-id" *ngIf="(authService.currentUser$ | async)?.studentCode">
+              ({{ (authService.currentUser$ | async)?.studentCode }})
+            </span>
           </span>
-        </span>
+        </div>
       </div>
     </ng-container>
 
     <!-- Template shown when logged OUT -->
     <ng-template #loggedOutLinks>
-       <ul class="nav-list">
-         <li><a routerLink="/login" routerLinkActive="active">Log in</a></li>
-         <li><a routerLink="/signup" routerLinkActive="active">Sign up</a></li>
-       </ul>
-
+      <div class="nav-wrapper" [class.active]="isMenuOpen">
+        <ul class="nav-list">
+          <li><a routerLink="/login" routerLinkActive="active" (click)="closeMenu()">Log in</a></li>
+          <li><a routerLink="/signup" routerLinkActive="active" (click)="closeMenu()">Sign up</a></li>
+        </ul>
+      </div>
     </ng-template>
-
   </div>
 </nav>
