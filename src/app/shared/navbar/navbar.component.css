@@ -67,8 +67,127 @@
   border: 1px solid #ddd;
 }
 
-.profile span {
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.user-name {
   font-size: 0.9rem;
   color: #333;
   font-weight: 500;
+  line-height: 1.2;
+}
+
+.user-id {
+  font-size: 0.75rem;
+  color: #666;
+  line-height: 1.2;
+}
+
+/* Mobile Menu Toggle Button */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Mobile Dropdown Menu */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-top: 1px solid #eee;
+}
+
+.mobile-menu .nav-list {
+  flex-direction: column;
+  gap: 0;
+  padding: 1rem 0;
+}
+
+.mobile-menu .nav-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.mobile-menu .nav-list a:last-child {
+  border-bottom: none;
+}
+
+/* Show mobile menu when active */
+.mobile-menu.active {
+  display: block;
+}
+
+/* Tablet Styles */
+@media (max-width: 992px) {
+  .nav-list {
+    gap: 1rem;
+  }
+  
+  .nav-list a {
+    font-size: 1.2rem;
+  }
+  
+  .nav-container {
+    padding: 0 0.75rem;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: block;
+  }
+  
+  .nav-list {
+    display: none;
+  }
+  
+  .profile span {
+    display: none; /* Hide profile text on very small screens */
+  }
+  
+  .nav-container {
+    padding: 0 1rem;
+  }
+}
+
+/* Very Small Mobile Screens */
+@media (max-width: 480px) {
+  .logo img {
+    height: 50px;
+  }
+  
+  .profile img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .nav-container {
+    padding: 0 0.75rem;
+  }
+}
+
+/* Large Desktop Screens */
+@media (min-width: 1400px) {
+  .nav-container {
+    max-width: 1400px;
+  }
+  
+  .nav-list {
+    gap: 2rem;
+  }
 }
