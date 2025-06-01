@@ -25,7 +25,7 @@ export class SignUpComponent implements OnInit {
   errorMessage: string | null = null;
 
 
-  private apiBaseUrl = 'https://systemuniversity.runasp.net/api/Auth'; 
+  private apiBaseUrl = 'https://localhost:7046/api/Auth'; 
 
   // Use inject() for dependencies
   private fb = inject(FormBuilder);

@@ -24,7 +24,7 @@ export class LevelSelectComponent {
   errorMessage: string | null = null;
 
   
-  private apiBaseUrl = 'https://https://systemuniversity.runasp.net/';
+  private apiBaseUrl = 'https:/systemuniversity.runasp.net';
 
   private router = inject(Router);
   private http = inject(HttpClient); // Inject HttpClient
