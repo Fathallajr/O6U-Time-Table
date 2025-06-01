@@ -2,16 +2,17 @@
   display: block;
 }
 
+/* الشريط اللي فوق ثابت */
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   z-index: 1000;
 }
 
+/* محدود بعرض الموبايل/ديسكتوب */
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -22,10 +23,11 @@
   padding: 0 1rem;
 }
 
+
 .logo img {
   height: 60px;
-  max-width: 100%;
 }
+
 
 .nav-list {
   margin: 0;
@@ -38,19 +40,19 @@
 .nav-list a {
   text-decoration: none;
   color: #333;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   transition: color 0.2s;
 }
+
 
 .nav-list a.active {
   color: #FD9C35;
   font-weight: 600;
 }
-
 .nav-list a:hover {
   color: #FD9C35;
 }
-
+/* src/app/shared/navbar/navbar.component.css */
 .profile {
   display: flex;
   align-items: center;
