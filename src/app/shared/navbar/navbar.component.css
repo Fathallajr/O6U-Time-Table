@@ -71,7 +71,7 @@
   font-weight: 500;
 }
 
-/* Mobile styles */
+/* ============ Mobile styles ============ */
 @media (max-width: 768px) {
   .nav-container {
     height: auto;
@@ -79,39 +79,35 @@
     padding: 1rem;
   }
   
+  /* نخلي اللينكات أفقيين في الموبايل */
   .nav-list {
-    flex-direction: column;
+    display: flex;          /* دايمًا يبقوا ظاهرين */
+    flex-direction: row;    /* جنب بعض */
+    justify-content: center;
     align-items: center;
     width: 100%;
-    gap: 0.5rem;
-    margin: 1rem 0;
-    display: none;
+    gap: 0.75rem;           /* نقلل شوية الفجوة */
+    margin: 0.5rem 0;       /* مسافة بسيطة فوق وتحت */
   }
 
-  .nav-toggle:checked ~ .nav-list {
-    display: flex;
+  /* نقلل حجم الخط علشان يناسب الموبايل */
+  .nav-list a {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
   }
 
+  /* نقلل حجم اللوجو شوية */
   .logo img {
     height: 50px;
   }
   
+  /* نخفي البروفايل علشان يبقى الهيدر أنضف في الموبايل */
   .profile {
-    margin-top: 1rem;
     display: none;
-  }
-
-  .nav-toggle:checked ~ .profile {
-    display: flex;
-  }
-
-  .nav-list a {
-    font-size: 1rem;
-    padding: 0.5rem 0;
   }
 }
 
-/* Tablet styles */
+/* ======== Tablet styles (لو محتاج) ======== */
 @media (min-width: 769px) and (max-width: 1024px) {
   .nav-list {
     gap: 1rem;
