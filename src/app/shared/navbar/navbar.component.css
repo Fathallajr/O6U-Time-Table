@@ -1,41 +1,187 @@
-/* ======== Overlay ======== */
-.overlay {
-  display: none;                /* مخفي افتراضى */
-  position: fixed;
-  inset: 0;                     /* top right bottom left = 0 */
-  background: rgba(0,0,0,.4);
-  z-index: 999;                 /* أقل من الـdrawer بشوية */
+/* =========================
+   1) الأساسيات العامة
+========================= */
+:host {
+  display: block;
 }
 
-/* ======== Drawer & Profile ======== */
-@media (max-width:768px){
-  /* drawer */
-  .nav-list, .profile{
-    position: fixed;
-    top: 70px;
-    left: 0;                    /* من الشمال */
-    width: 75%;                 /* أو 320px */
-    max-width: 320px;
-    height: calc(100% - 70px);  /* يملا الباقي */
-    overflow-y: auto;
-    background:#fff;
-    flex-direction: column;
-    gap: 1.2rem;
-    padding: 2rem 1.5rem;
-    transform: translateX(-100%);
-    transition: transform .3s ease;
-    box-shadow: 2px 0 8px rgba(0,0,0,.15);
+/* شريط النافبار ثابت فوق */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* حاوية المحتوى */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+/* اللوجو */
+.logo img {
+  height: 60px;
+}
+
+/* =========================
+   2) اللينكات (ديسكتوب)
+========================= */
+.nav-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.4rem;
+  transition: color 0.2s;
+}
+
+.nav-list a.active,
+.nav-list a:hover {
+  color: #fd9c35;
+  font-weight: 600;
+}
+
+/* =========================
+   3) البروفايل
+========================= */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+.profile span {
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* =========================
+   4) زرار الهامبرجر
+========================= */
+.nav-toggle {
+  display: none;            /* نخفي الـcheckbox نفسه */
+}
+
+.burger {
+  display: none;            /* هيبان بس على الموبايل */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #333;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* تأثير الـX لما المنيو تتفتح */
+.nav-toggle:checked + .burger span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav-toggle:checked + .burger span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle:checked + .burger span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =========================
+   5) الطبقة الـOverlay
+========================= */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;             /* أقل من الدروار بشوية */
+}
+
+/* =========================
+   6) ميديا كويرى للموبايل
+========================= */
+@media (max-width: 768px) {
+  /* الهامبرجر يظهر */
+  .burger {
+    display: flex;
   }
 
-  /* -- profile tweaks -- */
-  .profile img{ width:48px;height:48px; }
-  .profile{ gap:1rem; margin-bottom:.5rem; }
+  /* ناف بار تتحول لدروار من الشمال */
+  .nav-list,
+  .profile {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 75%;
+    max-width: 320px;
+    background: #fff;
+    flex-direction: row;        /* جنب بعض */
+    flex-wrap: wrap;            /* يلفوا لو ضاقت */
+    gap: 0.75rem;
+    padding: 1rem 0.75rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  }
 
-  /* لما المينيو تتفتح */
-  .nav-toggle:checked ~ .overlay{ display:block; }
+  /* تصغير الخطوط */
+  .nav-list a {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  /* بروفايل أصغر شوية */
+  .profile img {
+    width: 28px;
+    height: 28px;
+  }
+  .profile span {
+    font-size: 0.8rem;
+  }
+
+  /* فتح الدروار */
+  .nav-toggle:checked ~ .overlay {
+    display: block;
+  }
   .nav-toggle:checked ~ .nav-list,
-  .nav-toggle:checked ~ .profile{ transform: translateX(0); }
+  .nav-toggle:checked ~ .profile {
+    transform: translateX(0);
+  }
+}
 
-  /* امنع الـscroll */
-  body.menu-open{ overflow:hidden; }
+/* =========================
+   7) قفل Scroll الجسم لما المنيو مفتوحة
+   (ضيف/شيّل class "menu-open" بالـTS)
+========================= */
+body.menu-open {
+  overflow: hidden;
 }
