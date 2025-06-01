@@ -63,31 +63,30 @@ export class AuthService {
   }
 
   login(credentials: { email: string; password: string }): Observable<User | null> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials)
-      .pipe(
-        tap(response => {
-          localStorage.setItem(this.TOKEN_KEY, response.token);
-        
-          const user: User = {
-            id: response.id,
-            email: response.email,
-            name: response.email,  
-            studentCode: 0,       
-            photoUrl: 'assets/img/default-avatar.png'
-          };
-        
-          localStorage.setItem(this.USER_KEY, JSON.stringify(user));
-          this.userSubject.next(user);
-        })
-        ,
-        map(response => this.userSubject.value),
-        catchError(error => {
-          console.error('Login failed:', error);
-          this.clearUser(); 
-          return throwError(() => new Error('Login failed. Please check your credentials.'));
-        })
-      );
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials).pipe(
+      tap(response => {
+        localStorage.setItem(this.TOKEN_KEY, response.token);
+  
+        const user: User = {
+          id: response.id,
+          email: response.email,
+          name: response.email.split('@')[0], // Use the email prefix as a placeholder name
+          studentCode: 0, // Adjust if the backend sends this in the future
+          photoUrl: 'assets/img/default-avatar.png'
+        };
+  
+        localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+        this.userSubject.next(user);
+      }),
+      map(() => this.userSubject.value),
+      catchError(error => {
+        console.error('Login failed:', error);
+        this.clearUser(); 
+        return throwError(() => new Error('Login failed. Please check your credentials.'));
+      })
+    );
   }
+  
 
   getToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);
