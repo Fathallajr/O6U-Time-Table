@@ -20,8 +20,10 @@ export interface User {
 }
 
 export interface LoginResponse {
+  id: string;
+  email: string;
+  role: string;
   token: string;
-  user: ApiUser;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -65,20 +67,19 @@ export class AuthService {
       .pipe(
         tap(response => {
           localStorage.setItem(this.TOKEN_KEY, response.token);
-
+        
           const user: User = {
-            id: response.user.id,
-            email: response.user.email,
-            name: response.user.fullName,
-            studentCode: response.user.studentCode,
-            photoUrl: 'assets/img/default-avatar.png' 
+            id: response.id,
+            email: response.email,
+            name: response.email,  
+            studentCode: 0,       
+            photoUrl: 'assets/img/default-avatar.png'
           };
-
-          // --- Store the user object as well ---
+        
           localStorage.setItem(this.USER_KEY, JSON.stringify(user));
-
           this.userSubject.next(user);
-        }),
+        })
+        ,
         map(response => this.userSubject.value),
         catchError(error => {
           console.error('Login failed:', error);
