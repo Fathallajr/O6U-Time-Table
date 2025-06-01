@@ -76,7 +76,7 @@ export class SignUpComponent implements OnInit {
       email, 
       password 
     };
-    const registerUrl = `${this.apiBaseUrl}/register`;
+    const registerUrl = `${this.apiBaseUrl}/register/student`;
 
     console.log('Attempting registration with payload:', payload);
 
