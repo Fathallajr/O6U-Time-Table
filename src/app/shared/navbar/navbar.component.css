@@ -2,17 +2,16 @@
   display: block;
 }
 
-/* الشريط اللي فوق ثابت */
 .navbar {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   z-index: 1000;
 }
 
-/* محدود بعرض الموبايل/ديسكتوب */
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -23,11 +22,10 @@
   padding: 0 1rem;
 }
 
-
 .logo img {
   height: 60px;
+  max-width: 100%;
 }
-
 
 .nav-list {
   margin: 0;
@@ -40,19 +38,19 @@
 .nav-list a {
   text-decoration: none;
   color: #333;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   transition: color 0.2s;
 }
-
 
 .nav-list a.active {
   color: #FD9C35;
   font-weight: 600;
 }
+
 .nav-list a:hover {
   color: #FD9C35;
 }
-/* src/app/shared/navbar/navbar.component.css */
+
 .profile {
   display: flex;
   align-items: center;
@@ -71,4 +69,59 @@
   font-size: 0.9rem;
   color: #333;
   font-weight: 500;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav-container {
+    height: auto;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    display: none;
+  }
+
+  .nav-toggle:checked ~ .nav-list {
+    display: flex;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+
+  .profile {
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .nav-toggle:checked ~ .profile {
+    display: flex;
+  }
+
+  .nav-list a {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav-list {
+    gap: 1rem;
+  }
+
+  .nav-list a {
+    font-size: 1.2rem;
+  }
+
+  .logo img {
+    height: 55px;
+  }
 }
