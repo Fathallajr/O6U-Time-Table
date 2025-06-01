@@ -2,61 +2,68 @@
   display: block;
 }
 
-/* الشريط اللي فوق ثابت */
 .navbar {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   z-index: 1000;
 }
 
-/* محدود بعرض الموبايل/ديسكتوب */
 .nav-container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
-  height: 70px;
+  height: auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
 }
-
 
 .logo img {
-  height: 60px;
+  height: 50px;
+  transition: height 0.3s ease;
 }
-
 
 .nav-list {
   margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
 }
 
 .nav-list a {
   text-decoration: none;
   color: #333;
-  font-size: 1.4rem;
-  transition: color 0.2s;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  padding: 0.5rem;
 }
-
 
 .nav-list a.active {
   color: #FD9C35;
   font-weight: 600;
 }
+
 .nav-list a:hover {
   color: #FD9C35;
 }
-/* src/app/shared/navbar/navbar.component.css */
+
 .profile {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
 }
 
 .profile img {
@@ -73,57 +80,56 @@
   font-weight: 500;
 }
 
-/* Mobile styles */
-@media (max-width: 768px) {
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 576px) {
   .nav-container {
-    height: auto;
-    flex-direction: column;
-    padding: 1rem;
+    padding: 0 1.5rem;
   }
-
+  
   .nav-list {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 0.5rem;
-    margin: 1rem 0;
-    display: none;
+    width: auto;
+    gap: 1.5rem;
   }
-
-  .nav-toggle:checked ~ .nav-list {
-    display: flex;
-  }
-
-  .logo img {
-    height: 50px;
-  }
-
+  
   .profile {
-    margin-top: 1rem;
-    display: none;
-  }
-
-  .nav-toggle:checked ~ .profile {
-    display: flex;
-  }
-
-  .nav-list a {
-    font-size: 1rem;
-    padding: 0.5rem 0;
+    width: auto;
+    margin-top: 0;
   }
 }
 
-/* Tablet styles */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .nav-list {
-    gap: 1rem;
+@media (min-width: 768px) {
+  .nav-container {
+    height: 70px;
+    max-width: 1200px;
+    padding: 0 2rem;
   }
-
+  
+  .logo img {
+    height: 60px;
+  }
+  
   .nav-list a {
     font-size: 1.2rem;
   }
+  
+  .profile {
+    justify-content: flex-end;
+  }
+}
 
-  .logo img {
-    height: 55px;
+@media (min-width: 992px) {
+  .nav-list a {
+    font-size: 1.4rem;
+  }
+  
+  .nav-list {
+    gap: 2rem;
   }
 }
