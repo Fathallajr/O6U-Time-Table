@@ -1,75 +1,107 @@
 :host {
     display: block;
-  }
-  
-  /* الشريط اللي فوق ثابت */
-  .navbar {
+}
+
+.navbar {
     position: fixed;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     width: 100%;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     z-index: 1000;
-  }
-  
-  /* محدود بعرض الموبايل/ديسكتوب */
-  .nav-container {
+}
+
+.nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    height: 70px;
+    height: auto;
+    min-height: 70px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
-  }
-  
- 
-  .logo img {
-    height: 60px;
-  }
-  
- 
-  .nav-list {
+    padding: 0.5rem 1rem;
+}
+
+.logo img {
+    height: 50px;
+    max-width: 100%;
+}
+
+.nav-list {
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
-    gap: 1.5rem;
-  }
-  
-  .nav-list a {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    order: 3;
+}
+
+.nav-list a {
     text-decoration: none;
     color: #333;
-    font-size: 1.4rem;
+    font-size: 1rem;
     transition: color 0.2s;
-  }
-  
-  
-  .nav-list a.active {
+    padding: 0.5rem;
+    display: block;
+}
+
+.nav-list a.active {
     color: #FD9C35;
     font-weight: 600;
-  }
-  .nav-list a:hover {
+}
+
+.nav-list a:hover {
     color: #FD9C35;
-  }
-  /* src/app/shared/navbar/navbar.component.css */
+}
+
 .profile {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-  }
-  
-  .profile img {
+    order: 2;
+}
+
+.profile img {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid #ddd;
-  }
-  
-  .profile span {
+}
+
+.profile span {
     font-size: 0.9rem;
     color: #333;
     font-weight: 500;
-  }
-  
+}
+
+@media (min-width: 768px) {
+    .nav-container {
+        height: 70px;
+        flex-wrap: nowrap;
+    }
+    
+    .nav-list {
+        flex-direction: row;
+        width: auto;
+        order: initial;
+        gap: 1.5rem;
+    }
+    
+    .nav-list a {
+        font-size: 1.2rem;
+        padding: 0;
+    }
+    
+    .logo img {
+        height: 60px;
+    }
+    
+    .profile {
+        order: initial;
+    }
+}
