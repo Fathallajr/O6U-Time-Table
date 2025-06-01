@@ -3,7 +3,6 @@
 ========================= */
 :host {
   display: block;
-  direction: rtl; /* نخلي اتجاه الكلام من اليمين للشمال */
 }
 
 /* شريط النافبار ثابت فوق */
@@ -84,11 +83,11 @@
    4) زرار الهامبرجر
 ========================= */
 .nav-toggle {
-  display: none; /* نخفي الـcheckbox نفسه */
+  display: none;            /* نخفي الـcheckbox نفسه */
 }
 
 .burger {
-  display: none; /* هيبان بس على الموبايل */
+  display: none;            /* هيبان بس على الموبايل */
   flex-direction: column;
   justify-content: space-between;
   width: 26px;
@@ -124,7 +123,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
-  z-index: 999; /* أقل من الدروار بشوية */
+  z-index: 999;             /* أقل من الدروار بشوية */
 }
 
 /* =========================
@@ -136,7 +135,7 @@
     display: flex;
   }
 
-  /* الناف بار يتحول لدراور من الشمال */
+  /* ناف بار تتحول لدروار من الشمال */
   .nav-list,
   .profile {
     position: fixed;
@@ -145,20 +144,19 @@
     width: 75%;
     max-width: 320px;
     background: #fff;
-    flex-direction: row; /* جنب بعض */
-    flex-wrap: wrap;     /* يلفوا لو ضاقت */
-    gap: 0.5rem;         /* تصغير المسافات شوية */
-    padding: 0.75rem;
+    flex-direction: row;        /* جنب بعض */
+    flex-wrap: wrap;            /* يلفوا لو ضاقت */
+    gap: 0.75rem;
+    padding: 1rem 0.75rem;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
-    justify-content: flex-start; /* نزّل العناصر جنب بعض */
   }
 
   /* تصغير الخطوط */
   .nav-list a {
     font-size: 1rem;
-    white-space: nowrap; /* امنع الكسر داخل الكلمة */
+    white-space: nowrap;
   }
 
   /* بروفايل أصغر شوية */
@@ -170,7 +168,7 @@
     font-size: 0.8rem;
   }
 
-  /* فتح الدراور */
+  /* فتح الدروار */
   .nav-toggle:checked ~ .overlay {
     display: block;
   }
