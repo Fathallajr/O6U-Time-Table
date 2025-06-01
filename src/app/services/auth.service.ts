@@ -27,7 +27,7 @@ export interface LoginResponse {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://localhost:7046/api/Auth';
+  private apiUrl = 'https://systemuniversity.runasp.net/api/Auth';
 
   // --- Constants for localStorage keys ---
   private readonly TOKEN_KEY = 'authToken';
