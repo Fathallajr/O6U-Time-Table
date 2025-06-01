@@ -1,26 +1,26 @@
 <nav class="navbar">
   <div class="nav-container">
-    <div class="logo">
+    <!-- ✅  زرار المينيو للموبايل  -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="burger">
+      <span></span><span></span><span></span>
+    </label>
 
+    <!-- اللوجو -->
+    <div class="logo">
       <img src="logo.png" alt="O6U Logo" />
     </div>
 
-    <!-- Use *ngIf with the isAuthenticated$ observable from AuthService -->
+    <!-- اللينكات زي ما هي -->
     <ng-container *ngIf="(authService.isAuthenticated$ | async); else loggedOutLinks">
-      <!-- Links visible when logged IN -->
       <ul class="nav-list">
-         <li><a routerLink="/level" routerLinkActive="active">Select Level</a></li>
-         <li><a routerLink="/Qr" routerLinkActive="active">Attendance</a></li>
-
-         
-         <li><a (click)="logout()" style="cursor: pointer;">Logout</a></li>
+        <li><a routerLink="/level" routerLinkActive="active">Select Level</a></li>
+        <li><a routerLink="/Qr" routerLinkActive="active">Attendance</a></li>
+        <li><a (click)="logout()" style="cursor: pointer;">Logout</a></li>
       </ul>
+
       <div class="profile">
-        <img
-          src="profile.png"
-          alt="User avatar"
-        />
-        <!-- Use the 'name' property from the User interface -->
+        <img src="profile.png" alt="User avatar" />
         <span class="user-info">
           <span class="user-name">{{ (authService.currentUser$ | async)?.name || 'User' }}</span>
           <span class="user-id" *ngIf="(authService.currentUser$ | async)?.studentCode">
@@ -30,14 +30,11 @@
       </div>
     </ng-container>
 
-    <!-- Template shown when logged OUT -->
     <ng-template #loggedOutLinks>
-       <ul class="nav-list">
-         <li><a routerLink="/login" routerLinkActive="active">Log in</a></li>
-         <li><a routerLink="/signup" routerLinkActive="active">Sign up</a></li>
-       </ul>
-
+      <ul class="nav-list">
+        <li><a routerLink="/login" routerLinkActive="active">Log in</a></li>
+        <li><a routerLink="/signup" routerLinkActive="active">Sign up</a></li>
+      </ul>
     </ng-template>
-
   </div>
 </nav>
