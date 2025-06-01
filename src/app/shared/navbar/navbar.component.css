@@ -2,68 +2,61 @@
   display: block;
 }
 
+/* الشريط اللي فوق ثابت */
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   z-index: 1000;
 }
 
+/* محدود بعرض الموبايل/ديسكتوب */
 .nav-container {
-  max-width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  height: auto;
+  height: 70px;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
-  transition: all 0.3s ease;
+  padding: 0 1rem;
 }
 
+
 .logo img {
-  height: 50px;
-  transition: height 0.3s ease;
+  height: 60px;
 }
+
 
 .nav-list {
   margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  width: 100%;
-  justify-content: center;
+  gap: 1.5rem;
 }
 
 .nav-list a {
   text-decoration: none;
   color: #333;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-  padding: 0.5rem;
+  font-size: 1.4rem;
+  transition: color 0.2s;
 }
+
 
 .nav-list a.active {
   color: #FD9C35;
   font-weight: 600;
 }
-
 .nav-list a:hover {
   color: #FD9C35;
 }
-
+/* src/app/shared/navbar/navbar.component.css */
 .profile {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
-  width: 100%;
-  justify-content: center;
 }
 
 .profile img {
@@ -78,58 +71,4 @@
   font-size: 0.9rem;
   color: #333;
   font-weight: 500;
-}
-
-/* Mobile Menu Toggle */
-.menu-toggle {
-  display: none;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-/* Responsive Breakpoints */
-@media (min-width: 576px) {
-  .nav-container {
-    padding: 0 1.5rem;
-  }
-  
-  .nav-list {
-    width: auto;
-    gap: 1.5rem;
-  }
-  
-  .profile {
-    width: auto;
-    margin-top: 0;
-  }
-}
-
-@media (min-width: 768px) {
-  .nav-container {
-    height: 70px;
-    max-width: 1200px;
-    padding: 0 2rem;
-  }
-  
-  .logo img {
-    height: 60px;
-  }
-  
-  .nav-list a {
-    font-size: 1.2rem;
-  }
-  
-  .profile {
-    justify-content: flex-end;
-  }
-}
-
-@media (min-width: 992px) {
-  .nav-list a {
-    font-size: 1.4rem;
-  }
-  
-  .nav-list {
-    gap: 2rem;
-  }
 }
